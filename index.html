@@ -1,29 +1,122 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow,noarchive">
-    <meta name="googlebot" content="noindex,nofollow,noarchive">
-    <meta name="googlebot-news" content="noindex,nofollow,noarchive">
-    <meta name="googlebot-image" content="noindex,nofollow,noarchive">
-    <meta name="googlebot-local" content="noindex,nofollow,noarchive">
-    <meta name="googlebot-video" content="noindex,nofollow,noarchive">
-    <meta name="googlebot-news" content="noindex,nofollow,noarchive">
-    <title>Document</title>
+    <title>Modern Circle Name | 最高の体験を共に</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+    </style>
 </head>
 
 <body>
-    <h1>hello</h1>
-    <p>hello</p>
-    <a href="https://www.google.com">google</a>
-    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_120x44dp.png" alt="google">
-    <ul>
-        <li>hello</li>
-        <li>hello</li>
-        <li>hello</li>
-    </ul>
+    <header>
+        <div class="container nav">
+            <div class="logo">CIRCLE NAME</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>新しい刺激、<br>一生の仲間。</h1>
+                <p>私たちのサークルは、趣味を通じて最高の体験を共有するコミュニティです。初心者から経験者まで、共に成長できる場所を提供します。</p>
+                <a href="#contact" class="btn" style="display: inline-block; padding: 1rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 30px; font-weight: 600;">今すぐ参加する</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">私たちについて</h2>
+                <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p>20XX年に設立された当サークルは、自由な発想と熱意を大切に活動しています。週に一度の定例会と、季節ごとの特別イベントを通じて、メンバー間の交流を深めています。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="history">
+            <div class="container">
+                <h2 class="section-title">沿革</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020.04</div>
+                            <h3>サークル設立</h3>
+                            <p>5人の有志によって活動を開始しました。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021.09</div>
+                            <h3>初の合同展示会</h3>
+                            <p>他大学との共同プロジェクトを成功させました。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022.12</div>
+                            <h3>メンバー数100名突破</h3>
+                            <p>活動の幅が広がり、多様なバックグラウンドを持つ仲間が増えました。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023.08</div>
+                            <h3>全国大会入賞</h3>
+                            <p>チーム一丸となって成し遂げた大きな成果です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities">
+            <div class="container">
+                <h2 class="section-title">活動内容</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Weekly Workshop</h3>
+                        <p>毎週水曜日に行われる勉強会。スキルの共有と相互フィードバックを大切にしています。</p>
+                    </div>
+                    <div class="card">
+                        <h3>Summer Camp</h3>
+                        <p>夏休みを利用した合宿。集中して制作に取り組み、夜はBBQで親睦を深めます。</p>
+                    </div>
+                    <div class="card">
+                        <h3>Final Project</h3>
+                        <p>一年の集大成となる大規模プロジェクト。全メンバーが協力して完成を目指します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title">お問い合わせ</h2>
+                <div class="card" style="max-width: 600px; margin: 0 auto;">
+                    <p>入会希望や見学、取材のご依頼はこちらから。お待ちしております。</p>
+                    <p style="margin-top: 2rem; font-weight: 700; font-size: 1.5rem;">hello@example-circle.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Modern Circle Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
