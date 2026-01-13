@@ -6,21 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow,noarchive">
     <title>HTMLの練習。このサイトは架空のものです。Modern Circle Name | 最高の体験を共に</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap');
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61HH88G3J8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-61HH88G3J8');
+    </script>
 </head>
 
 <body>
     <header>
         <div class="container nav">
             <div class="logo">CIRCLE NAME</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#history">History</a></li>
                 <li><a href="#activities">Activities</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li class="social-links-group">
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
+                            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="https://note.com" target="_blank" rel="noopener noreferrer" aria-label="note">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                        </svg>
+                    </a>
+                </li>
             </ul>
         </div>
     </header>
@@ -28,9 +59,9 @@
     <main>
         <section class="hero">
             <div class="container hero-content">
-                <h1>新しい刺激、<br>一生の仲間。</h1>
+                <h1 class="floating">HTMLテスト新しい刺激、<br>一生の仲間。</h1>
                 <p>私たちのサークルは、趣味を通じて最高の体験を共有するコミュニティです。初心者から経験者まで、共に成長できる場所を提供します。</p>
-                <a href="#contact" class="btn" style="display: inline-block; padding: 1rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 30px; font-weight: 600;">今すぐ参加する</a>
+                <a href="#contact" class="btn">今すぐ参加する</a>
             </div>
         </section>
 
@@ -48,6 +79,7 @@
                 <h2 class="section-title">沿革</h2>
                 <div class="timeline">
                     <div class="timeline-item">
+                        <div class="timeline-dora"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">2020.04</div>
                             <h3>サークル設立</h3>
@@ -55,6 +87,7 @@
                         </div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-dora"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">2021.09</div>
                             <h3>初の合同展示会</h3>
@@ -62,6 +95,7 @@
                         </div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-dora"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">2022.12</div>
                             <h3>メンバー数100名突破</h3>
@@ -69,6 +103,7 @@
                         </div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-dora"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">2023.08</div>
                             <h3>全国大会入賞</h3>
@@ -83,18 +118,34 @@
             <div class="container">
                 <h2 class="section-title">活動内容</h2>
                 <div class="grid">
-                    <div class="card">
-                        <h3>Weekly Workshop</h3>
-                        <p>毎週水曜日に行われる勉強会。スキルの共有と相互フィードバックを大切にしています。</p>
-                    </div>
-                    <div class="card">
-                        <h3>Summer Camp</h3>
-                        <p>夏休みを利用した合宿。集中して制作に取り組み、夜はBBQで親睦を深めます。</p>
-                    </div>
-                    <div class="card">
-                        <h3>Final Project</h3>
-                        <p>一年の集大成となる大規模プロジェクト。全メンバーが協力して完成を目指します。</p>
-                    </div>
+                    <a href="activities/welcome.html" class="card activity-card" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="assets/images/welcome.png" alt="新歓" class="activity-image">
+                        <div class="activity-content">
+                            <h3>新歓パーティー</h3>
+                            <p>新しい仲間を迎える最高のスタート。ピザと笑顔で溢れる一日。</p>
+                        </div>
+                    </a>
+                    <a href="activities/takaoka.html" class="card activity-card" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="assets/images/takaoka.png" alt="高岡合宿" class="activity-image">
+                        <div class="activity-content">
+                            <h3>高岡合宿</h3>
+                            <p>歴史ある高岡の地で、技術スキルを集中的に磨くサマーキャンプ。</p>
+                        </div>
+                    </a>
+                    <a href="activities/atami.html" class="card activity-card" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="assets/images/atami.png" alt="熱海合宿" class="activity-image">
+                        <div class="activity-content">
+                            <h3>熱海合宿</h3>
+                            <p>海と温泉に癒やされる冬の合宿。花火も楽しみます。</p>
+                        </div>
+                    </a>
+                    <a href="activities/daily.html" class="card activity-card" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="assets/images/daily.png" alt="定例活動" class="activity-image">
+                        <div class="activity-content">
+                            <h3>日々の定例活動</h3>
+                            <p>週に一度、ラボに集まって各自のプロジェクトを進めたり、技術交流を行います。</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -116,7 +167,7 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
