@@ -315,6 +315,10 @@ footer {
         text-align: left !important;
         padding-left: 2rem;
     }
+
+    .timeline-item:nth-child(odd) .timeline-dora {
+        left: 0;
+    }
 }
 
 /* Animations */
