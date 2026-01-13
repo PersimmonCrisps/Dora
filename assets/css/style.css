@@ -296,6 +296,8 @@ footer {
     text-align: center;
     padding: 4rem 0;
     color: #64748b;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
 }
 
 @media (max-width: 768px) {
