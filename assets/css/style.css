@@ -338,6 +338,14 @@ footer {
     padding: 1.5rem;
 }
 
+.activity-date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: block;
+}
+
 /* Hamburger Menu & Mobile Nav */
 .hamburger {
     display: none;
