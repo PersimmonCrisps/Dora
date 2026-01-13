@@ -1,3 +1,6 @@
+console.log("覗いてますね？👀");
+console.log("このウェブサイトはAIで作りました。いやすごっ");
+
 // Intersection Observer for Scroll Animations
 const observerOptions = {
     threshold: 0.1

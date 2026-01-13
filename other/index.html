@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Not Press</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            transition: background-color 0.2s;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        #message {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            min-height: 2em;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        #the-button {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: none;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 5px 10px rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+            text-transform: uppercase;
+            outline: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        #the-button:active {
+            transform: scale(0.95) translateY(5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+
+        .runaway {
+            position: absolute;
+            transition: top 0.3s ease, left 0.3s ease;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="message">DO NOT PRESS</div>
+        <button id="the-button">押さないで</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('the-button');
+        const message = document.getElementById('message');
+        const body = document.body;
+
+        let clickCount = 0;
+        let runawayMode = false;
+
+        // Reveal initial message
+        setTimeout(() => {
+            message.textContent = "WARNING: DO NOT PRESS THE BUTTON";
+            message.style.opacity = 1;
+        }, 1000);
+
+        button.addEventListener('click', (e) => {
+            if (runawayMode) return; // Should be hard to click in runaway mode
+
+            clickCount++;
+
+            if (clickCount === 1) {
+                // Phase 1
+                body.style.backgroundColor = '#330000';
+                message.textContent = "I SAID DO NOT PRESS IT!";
+                message.style.color = '#ff4d4d';
+                button.textContent = "本当にやめて";
+
+                setTimeout(() => {
+                    body.style.backgroundColor = '#1a1a1a';
+                }, 200);
+            } else if (clickCount === 2) {
+                // Phase 2
+                message.textContent = "SERIOUSLY, STOP!";
+                button.textContent = "だめ！";
+                body.classList.add('shake');
+                setTimeout(() => body.classList.remove('shake'), 500);
+            } else if (clickCount === 3) {
+                // Phase 3 - Runaway prep
+                message.textContent = "OKAY, YOU ASKED FOR IT...";
+                runawayMode = true;
+                button.textContent = "Catch me!";
+                button.style.position = 'absolute';
+                moveButton();
+
+                // Add mouseover to run away
+                button.addEventListener('mouseover', moveButton);
+
+                // Allow catching after 5 seconds
+                setTimeout(() => {
+                    button.removeEventListener('mouseover', moveButton);
+                    runawayMode = false;
+                    button.textContent = "Give up?";
+                    button.style.transition = 'none'; // Stop transition for easy catch
+                }, 5000);
+            } else if (clickCount >= 4) {
+                // Victory
+                victory();
+            }
+        });
+
+        function moveButton() {
+            if (!runawayMode) return;
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 200);
+            button.style.left = x + 'px';
+            button.style.top = y + 'px';
+        }
+
+        function victory() {
+            body.style.backgroundColor = '#f0f0f0';
+            body.style.color = '#333';
+            message.style.color = '#333';
+            message.innerHTML = "🎉 CONGRATULATIONS! 🎉<br><span style='font-size: 1rem; font-weight: normal'>You are very persistent. Here is a cookie 🍪</span>";
+            button.style.display = 'none';
+
+            // Confetti
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = -10 + 'px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+            body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    </script>
+</body>
+
+</html>
