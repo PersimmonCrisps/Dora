@@ -295,7 +295,6 @@ section {
 footer {
     text-align: center;
     padding: 4rem 0;
-    border-top: 1px solid var(--glass-border);
     color: #64748b;
 }
 
