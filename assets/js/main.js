@@ -70,24 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu on touch (Mobile instant)
     document.addEventListener('touchstart', closeMenu);
 
-    // Automatic Activity Sorting
-    const sortActivities = () => {
-        const activitiesList = document.querySelector('#activities-list .grid');
-        if (activitiesList) {
-            const items = Array.from(activitiesList.querySelectorAll('.activity-card'));
-
-            items.sort((a, b) => {
-                const dateA = new Date(a.dataset.date || '1970-01-01');
-                const dateB = new Date(b.dataset.date || '1970-01-01');
-                return dateB - dateA; // Descending (Newest first)
-            });
-
-            // Re-append items in sorted order
-            items.forEach(item => activitiesList.appendChild(item));
-        }
-    };
-
-    sortActivities();
-
-    // Activities & Reports "Show More" Logic removed as we moved to a separate page.
 });
