@@ -40,6 +40,15 @@ body {
     background-image:
         radial-gradient(var(--primary) 1px, transparent 1px);
     background-size: 40px 40px;
+    /* Sticky Footer */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    width: 100%;
 }
 
 .container {
