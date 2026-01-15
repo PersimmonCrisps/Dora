@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://doraemon.tokyo/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/welcome.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/takaoka.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/atami.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/daily.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/report_template.html</loc>
+    <priority>0.6</priority>
+  </url>
+</urlset>
