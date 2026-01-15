@@ -71,3 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', closeMenu);
 
 });
+
+// Loading Screen
+const loading = document.getElementById('loading');
+if (loading) {
+    // Check if user has visited in this session
+    const visited = sessionStorage.getItem('visited');
+
+    if (visited) {
+        // If visited, hide loading screen immediately without animation
+        loading.classList.add('loaded');
+    } else {
+        // If first visit, wait for page load then show animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loading.classList.add('loaded');
+                // Mark as visited for this session
+                sessionStorage.setItem('visited', 'true');
+            }, 800);
+        });
+    }
+}
