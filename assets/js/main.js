@@ -88,7 +88,7 @@ if (loading) {
                 loading.classList.add('loaded');
                 // Mark as visited for this session
                 sessionStorage.setItem('visited', 'true');
-            }, 800);
+            }, 1000);
         });
     }
 }
