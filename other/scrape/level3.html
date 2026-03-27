@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Lists & Navigation</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav><a href="index.html">Home</a></nav>
+            <h1>Level 3: Lists & Navigation</h1>
+            <p class="text-muted">階層構造のあるリストやリンクを抽出してみましょう。</p>
+        </header>
+        <main>
+            <div class="card">
+                <h2>学習ロードマップ：データサイエンス</h2>
+                <ul class="roadmap">
+                    <li>
+                        <strong style="color: #818cf8;">プログラミング</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem; list-style: circle;">
+                            <li><a href="course/python.html">Python 基礎</a></li>
+                            <li><a href="course/pandas.html">Pandas データ分析</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </main>
+        <style>
+            .roadmap { list-style: none; margin-top: 1.5rem; }
+            .roadmap > li { margin-bottom: 1.5rem; border-left: 2px solid var(--primary); padding-left: 1rem; }
+        </style>
+        <footer class="footer"><p>&copy; 2026 Scraping Practice Site.</p></footer>
+    </div>
+</body>
+</html>

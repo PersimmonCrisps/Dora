@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Scraping Practice</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="index.html">Home</a>
+            </nav>
+            <h1>Scraping Practice Website</h1>
+            <p class="text-muted">段階的に学べるスクレイピング練習用サイトです（静的HTML版）。</p>
+        </header>
+
+        <main>
+            <div class="level-grid">
+                <div class="card">
+                    <span class="badge badge-easy">Level 1</span>
+                    <h2>Basic Text</h2>
+                    <p>単一のページからタイトルや本文を抽出する練習です。</p>
+                    <a href="level1.html" class="btn">レベル 1 へ</a>
+                </div>
+
+                <div class="card">
+                    <span class="badge badge-easy">Level 2</span>
+                    <h2>Data Tables</h2>
+                    <p>表形式のデータを抽出し、構造化する練習です。</p>
+                    <a href="level2.html" class="btn">レベル 2 へ</a>
+                </div>
+
+                <div class="card">
+                    <span class="badge badge-medium">Level 3</span>
+                    <h2>Lists & Navigation</h2>
+                    <p>リスト形式やリンクの抽出、複数階層の構造を扱う練習です。</p>
+                    <a href="level3.html" class="btn">レベル 3 へ</a>
+                </div>
+
+                <div class="card">
+                    <span class="badge badge-medium">Level 4</span>
+                    <h2>Complex Selectors</h2>
+                    <p>IDやクラス、属性など特定の条件でデータを絞り込む練習です。</p>
+                    <a href="level4.html" class="btn">レベル 4 へ</a>
+                </div>
+
+                <div class="card">
+                    <span class="badge badge-hard">Level 5</span>
+                    <h2>Product Catalog</h2>
+                    <p>実用的なECサイト風のページから複数の項目を抽出する練習です。</p>
+                    <a href="level5.html" class="btn">レベル 5 へ</a>
+                </div>
+
+                <div class="card">
+                    <span class="badge badge-hard">Level 6</span>
+                    <h2>Login Simulation</h2>
+                    <p>ログインが必要なページからのデータ抽出をシミュレーションします。</p>
+                    <a href="login.html" class="btn">レベル 6 へ</a>
+                </div>
+
+                <div class="card" style="border: 1px solid #c084fc;">
+                    <span class="badge badge-hard" style="background: rgba(192, 132, 252, 0.2); color: #c084fc;">Level 7</span>
+                    <h2>Infinite Scroll</h2>
+                    <p>スクロールによって動的に読み込まれるコンテンツの抽出練習です。</p>
+                    <a href="scroll.html" class="btn">レベル 7 へ</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Scraping Practice Site. Happy Coding!</p>
+        </footer>
+    </div>
+</body>
+</html>

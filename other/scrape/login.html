@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 6 - Login Simulation</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav><a href="index.html">Home</a></nav>
+            <h1>Level 6: Login Simulation</h1>
+            <p class="text-muted">ログインフォームの操作を練習しましょう。</p>
+        </header>
+        <main>
+            <div class="card" id="login-container" style="max-width: 400px; margin: 0 auto;">
+                <h2>Login</h2>
+                <form id="login-form" style="margin-top: 1.5rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Username</label>
+                        <input type="text" id="username" name="username" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;" value="admin">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Password</label>
+                        <input type="password" id="password" name="password" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;" value="password123">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                    <p id="error-msg" style="color: #f87171; margin-top: 1rem; display: none;">Invalid credentials</p>
+                </form>
+            </div>
+        </main>
+        <script>
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const user = document.getElementById('username').value;
+                const pass = document.getElementById('password').value;
+                if (user === 'admin' && pass === 'password123') {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    window.location.href = 'secret.html';
+                } else {
+                    document.getElementById('error-msg').style.display = 'block';
+                }
+            });
+        </script>
+        <footer class="footer"><p>&copy; 2026 Scraping Practice Site.</p></footer>
+    </div>
+</body>
+</html>

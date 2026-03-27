@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 - Basic Text</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav><a href="index.html">Home</a></nav>
+            <h1>Level 1: Basic Text Extraction</h1>
+            <p class="text-muted">タイトルと本文を抽出してみましょう。</p>
+        </header>
+        <main>
+            <div class="card">
+                <h2 id="article-title">スクレイピングの第一歩：HTML構造の理解</h2>
+                <p class="text-muted">公開日: 2026年3月27日 | カテゴリ: プログラミング</p>
+                <div style="margin-top: 1.5rem;">
+                    <p>スクレイピングを始める際に最も重要なのは、対象となるウェブサイトのHTML構造を正しく理解することです。</p>
+                    <p>HTMLはタグによって構成されており、<code>&lt;h1&gt;</code>は最も大きな見出し、<code>&lt;p&gt;</code>は段落を表します。</p>
+                </div>
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--glass); border-radius: 0.5rem;">
+                    <h3>ヒント</h3>
+                    <p><code>find()</code> や <code>select_one()</code> を使ってみましょう。</p>
+                </div>
+            </div>
+        </main>
+        <footer class="footer"><p>&copy; 2026 Scraping Practice Site.</p></footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 7 - Infinite Scroll</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav><a href="index.html">Home</a></nav>
+            <h1>Level 7: Infinite Scroll Simulation</h1>
+            <p class="text-muted">スクロールして読み込まれる動的コンテンツをキャプチャしましょう。</p>
+        </header>
+        <main>
+            <div id="product-container" class="level-grid" style="grid-template-columns: 1fr;">
+                <!-- Dynamically loaded items go here -->
+            </div>
+            <div id="loading" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                Loading more items...
+            </div>
+        </main>
+        <script>
+            let itemCount = 0;
+            const container = document.getElementById('product-container');
+            
+            function createItem(index) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.marginBottom = '1.5rem';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 class="dynamic-item-title">動的アイテム #${index + 1}</h3>
+                        <span class="badge badge-easy">ID: ${Math.random().toString(36).substr(2, 9)}</span>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--text-muted);">このコンテンツはスクロールに応じてJavaScriptで生成されています。</p>
+                `;
+                return card;
+            }
+
+            function loadMore() {
+                for (let i = 0; i < 5; i++) {
+                    container.appendChild(createItem(itemCount++));
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                    loadMore();
+                }
+            });
+
+            // Initial load
+            loadMore();
+        </script>
+    </div>
+</body>
+</html>
