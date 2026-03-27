@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -19,12 +21,12 @@
                 <h2>Login</h2>
                 <form id="login-form" style="margin-top: 1.5rem;">
                     <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem;">Username</label>
-                        <input type="text" id="username" name="username" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;" value="admin">
+                        <label style="display: block; margin-bottom: 0.5rem;">Username(admin)</label>
+                        <input type="text" id="username" name="username" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;">
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem;">Password</label>
-                        <input type="password" id="password" name="password" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;" value="password123">
+                        <label style="display: block; margin-bottom: 0.5rem;">Password(password123)</label>
+                        <input type="password" id="password" name="password" style="width: 100%; padding: 0.5rem; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 4px;">
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">Login</button>
                     <p id="error-msg" style="color: #f87171; margin-top: 1rem; display: none;">Invalid credentials</p>
@@ -32,7 +34,7 @@
             </div>
         </main>
         <script>
-            document.getElementById('login-form').addEventListener('submit', function(e) {
+            document.getElementById('login-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const user = document.getElementById('username').value;
                 const pass = document.getElementById('password').value;
@@ -44,7 +46,10 @@
                 }
             });
         </script>
-        <footer class="footer"><p>&copy; 2026 Scraping Practice Site.</p></footer>
+        <footer class="footer">
+            <p>&copy; 2026 Scraping Practice Site.</p>
+        </footer>
     </div>
 </body>
+
 </html>
