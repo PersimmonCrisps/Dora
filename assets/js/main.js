@@ -1,5 +1,5 @@
 console.log("覗いてますね？👀");
-console.log("このウェブサイトはAIで作りました。いやすごっ");
+console.log("このウェブサイトはAntigravityで作りました。いやすごっ");
 
 // Intersection Observer for Scroll Animations
 const observerOptions = {
@@ -70,7 +70,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu on touch (Mobile instant)
     document.addEventListener('touchstart', closeMenu);
 
+    // Dynamic Activity Loading
+    const activitiesListGrid = document.getElementById('activities-list-grid');
+    const activitiesFeaturedGrid = document.getElementById('activities-featured-grid');
+
+    if (activitiesListGrid) {
+        loadActivities(activitiesListGrid, false);
+    }
+    if (activitiesFeaturedGrid) {
+        loadActivities(activitiesFeaturedGrid, true);
+    }
+
 });
+
+/**
+ * Loads activities from JSON and renders them into the container
+ * @param {HTMLElement} container 
+ * @param {boolean} filterFeatured - Whether to only show featured items
+ */
+async function loadActivities(container, filterFeatured = false) {
+    const isSubDir = window.location.pathname.includes('/activities/');
+    const jsonPath = isSubDir ? '../assets/data/activities.json' : 'assets/data/activities.json';
+    const imagePrefix = isSubDir ? '../assets/images/activities/' : 'assets/images/activities/';
+    const linkPrefix = isSubDir ? '' : 'activities/';
+
+    try {
+        const response = await fetch(jsonPath);
+        if (!response.ok) throw new Error('Failed to fetch activities');
+        const activities = await response.json();
+
+        let displayActivities = activities;
+
+        if (filterFeatured) {
+            // Show only featured items
+            displayActivities = activities.filter(activity => activity.featured);
+        } else {
+            // Sort by date descending for the full list
+            displayActivities.sort((a, b) => new Date(b.rawDate) - new Date(a.rawDate));
+        }
+
+        if (displayActivities.length === 0) {
+            container.innerHTML = '<p style="text-align:center; padding: 2rem;">表示できる活動がありません。</p>';
+            return;
+        }
+
+        container.innerHTML = displayActivities.map(activity => `
+            <a href="${linkPrefix}${activity.link}" class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date="${activity.rawDate}">
+                <img src="${imagePrefix}${activity.image}" alt="${activity.title}" class="activity-image">
+                <div class="activity-content">
+                    <h3>${activity.title}</h3>
+                    <div class="activity-date">${activity.date}</div>
+                    <p>${activity.description}</p>
+                    <div class="read-more">Read More <span>→</span></div>
+                </div>
+            </a>
+        `).join('');
+
+        // Apply fade-in animation to dynamic elements
+        const newCards = container.querySelectorAll('.activity-card');
+        newCards.forEach(card => {
+            card.classList.add('fade-in');
+            if (typeof observer !== 'undefined') {
+                observer.observe(card);
+            }
+        });
+
+    } catch (error) {
+        console.error('Error loading activities:', error);
+        container.innerHTML = '<p style="text-align:center; padding: 2rem;">活動情報の読み込みに失敗しました。</p>';
+    }
+}
 
 // Loading Screen
 const loading = document.getElementById('loading');

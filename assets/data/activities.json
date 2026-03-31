@@ -1,0 +1,47 @@
+[
+    {
+        "title": "京都大学コラボ",
+        "date": "2026.03.31",
+        "rawDate": "2026-03-31",
+        "image": "260331_Kyodai.jpeg",
+        "link": "260331_Kyodai.html",
+        "description": "京都大学ドラえもん同好会の方々と交流しました！",
+        "featured": true
+    },
+    {
+        "title": "早稲田大学コラボ",
+        "date": "2025.06.15",
+        "rawDate": "2025-06-15",
+        "image": "250615_Waseda.jpeg",
+        "link": "250615_Waseda.html",
+        "description": "早稲田大学ドラえもん研究会の方々とジャイアンの誕生日を祝いました！",
+        "featured": true
+    },
+    {
+        "title": "熱海合宿",
+        "date": "2025.09.26-27",
+        "rawDate": "2025-09-26",
+        "image": "250926_atami.jpeg",
+        "link": "250926_atami.html",
+        "description": "2025年度熱海合宿の報告です",
+        "featured": true
+    },
+    {
+        "title": "高岡合宿",
+        "date": "2024.09.21-22",
+        "rawDate": "2024-09-21",
+        "image": "240921_takaoka.jpeg",
+        "link": "240921_takaoka.html",
+        "description": "2024年度高岡合宿の報告です",
+        "featured": false
+    },
+    {
+        "title": "活動報告テンプレ",
+        "date": "2024.06.15",
+        "rawDate": "2024-06-15",
+        "image": "tmp.jpeg",
+        "link": "report_template.html",
+        "description": "活動報告のテンプレート（公開時に削除）",
+        "featured": false
+    }
+]

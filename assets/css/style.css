@@ -314,6 +314,18 @@ section {
     font-weight: 800;
 }
 
+.card a:not(.btn) {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.card a:not(.btn):hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
 footer {
     text-align: center;
     padding: 4rem 0;
