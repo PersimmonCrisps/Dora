@@ -1,12 +1,12 @@
 /**
  * ドラえもんF同好会 - メインスクリプト
- * 
+ *
  * 【主な機能】
  * 1. 活動内容の動的読み込み (JSON連携)
  * 2. 活動詳細ページでのフォトギャラリー自動生成
  * 3. 共通パーツ（ヘッダー・フッター・ナビゲーション）の制御
  * 4. ライトボックス機能（画像表示・拡大）
- * 
+ *
  * メンテナー向け：
  * - 活動を追加・編集する場合は assets/data/activities.json を編集してください。
  * - ページごとのギャラリーは、HTML内の #activity-gallery 要素を基準に、
@@ -131,7 +131,7 @@ async function loadActivities(container, filterFeatured = false) {
 
         container.innerHTML = displayActivities.map(activity => `
             <a href="${linkPrefix}${activity.link}" class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date="${activity.rawDate}">
-                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" width="400" height="267" loading="lazy" class="activity-image" style="width: 100%; height: auto;">
+                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" class="activity-image">
                 <div class="activity-content">
                     <h3>${activity.title}</h3>
                     <div class="activity-date">${activity.date}</div>
@@ -214,7 +214,7 @@ async function initActivityGallery(container) {
                 <div class="gallery-grid">
                     ${activity.gallery.map(img => `
                         <div class="gallery-item">
-                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真" width="400" height="267" loading="lazy" style="width: 100%; height: auto;">
+                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真">
                         </div>
                     `).join('')}
                 </div>
