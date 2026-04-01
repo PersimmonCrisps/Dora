@@ -131,7 +131,7 @@ async function loadActivities(container, filterFeatured = false) {
 
         container.innerHTML = displayActivities.map(activity => `
             <a href="${linkPrefix}${activity.link}" class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date="${activity.rawDate}">
-                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" class="activity-image">
+                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" width="400" height="267" loading="lazy" class="activity-image" style="width: 100%; height: auto;">
                 <div class="activity-content">
                     <h3>${activity.title}</h3>
                     <div class="activity-date">${activity.date}</div>
@@ -214,7 +214,7 @@ async function initActivityGallery(container) {
                 <div class="gallery-grid">
                     ${activity.gallery.map(img => `
                         <div class="gallery-item">
-                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真">
+                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真" width="400" height="267" loading="lazy" style="width: 100%; height: auto;">
                         </div>
                     `).join('')}
                 </div>
