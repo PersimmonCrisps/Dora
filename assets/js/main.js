@@ -1,3 +1,18 @@
+/**
+ * ドラえもんF同好会 - メインスクリプト
+ * 
+ * 【主な機能】
+ * 1. 活動内容の動的読み込み (JSON連携)
+ * 2. 活動詳細ページでのフォトギャラリー自動生成
+ * 3. 共通パーツ（ヘッダー・フッター・ナビゲーション）の制御
+ * 4. ライトボックス機能（画像表示・拡大）
+ * 
+ * メンテナー向け：
+ * - 活動を追加・編集する場合は assets/data/activities.json を編集してください。
+ * - ページごとのギャラリーは、HTML内の #activity-gallery 要素を基準に、
+ *   現在のファイル名と JSON 内の "link" プロパティを照合して自動生成されます。
+ */
+
 console.log("覗いてますね？👀");
 console.log("このウェブサイトはAntigravityで作りました。いやすごっ");
 
@@ -85,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Loads activities from JSON and renders them into the container
- * @param {HTMLElement} container 
+ * @param {HTMLElement} container
  * @param {boolean} filterFeatured - Whether to only show featured items
  */
 async function loadActivities(container, filterFeatured = false) {
@@ -116,7 +131,7 @@ async function loadActivities(container, filterFeatured = false) {
 
         container.innerHTML = displayActivities.map(activity => `
             <a href="${linkPrefix}${activity.link}" class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date="${activity.rawDate}">
-                <img src="${imagePrefix}${activity.image}" alt="${activity.title}" class="activity-image">
+                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" class="activity-image">
                 <div class="activity-content">
                     <h3>${activity.title}</h3>
                     <div class="activity-date">${activity.date}</div>
@@ -137,7 +152,7 @@ async function loadActivities(container, filterFeatured = false) {
 
     } catch (error) {
         console.error('Error loading activities:', error);
-        container.innerHTML = '<p style="text-align:center; padding: 2rem;">活動情報の読み込みに失敗しました。</p>';
+        container.innerHTML = '<p style="text-align:center; padding: 2rem;">活動一覧の読み込みに失敗しました。JavaScriptを有効にしてください。</p>';
     }
 }
 
@@ -161,3 +176,96 @@ if (loading) {
         });
     }
 }
+
+// Global initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic Activity Gallery Loading for individual pages
+    const activityGallery = document.getElementById('activity-gallery');
+    if (activityGallery) {
+        initActivityGallery(activityGallery);
+    }
+
+    // Lightbox Functionality - Initial call
+    setupLightbox();
+});
+
+/**
+ * Initializes the gallery for an individual activity page
+ * @param {HTMLElement} container
+ */
+async function initActivityGallery(container) {
+    // Determine the activity ID from the current filename
+    const pathParts = window.location.pathname.split('/');
+    const currentFile = pathParts[pathParts.length - 1];
+
+    // Fallback for root or index
+    if (!currentFile || currentFile === 'index.html') return;
+
+    try {
+        const response = await fetch('../assets/data/activities.json');
+        if (!response.ok) throw new Error('Failed to fetch activity data');
+        const activities = await response.json();
+
+        const activity = activities.find(a => a.link === currentFile);
+
+        if (activity && activity.gallery && activity.gallery.length > 0) {
+            container.innerHTML = `
+                <h2 style="color: var(--primary); font-size: 1.5rem; margin: 3rem 0 1.5rem; text-align: center;">フォトギャラリー</h2>
+                <div class="gallery-grid">
+                    ${activity.gallery.map(img => `
+                        <div class="gallery-item">
+                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真">
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Re-initialize lightbox for newly added images
+            setupLightbox();
+        }
+    } catch (error) {
+        console.error('Error loading gallery:', error);
+        container.innerHTML = '<p style="text-align:center; padding: 2rem;">ギャラリーの読み込みに失敗しました。JavaScriptを有効にしてください。</p>';
+    }
+}
+
+/**
+ * Sets up the lightbox click event listeners
+ */
+function setupLightbox() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+
+    // Remove existing listeners if any (simple way: clone and replace nodes, but here we just add)
+    galleryItems.forEach(img => {
+        // Prevent double binding if called multiple times
+        if (img.dataset.lightboxInit) return;
+        img.dataset.lightboxInit = "true";
+
+        img.addEventListener('click', (e) => {
+            const src = e.target.getAttribute('src');
+            const alt = e.target.getAttribute('alt');
+
+            const lightbox = document.createElement('div');
+            lightbox.classList.add('lightbox');
+            lightbox.innerHTML = `
+                <div class="lightbox-close">&times;</div>
+                <img src="${src}" alt="${alt}">
+            `;
+
+            document.body.appendChild(lightbox);
+
+            // Trigger animation
+            setTimeout(() => lightbox.classList.add('active'), 10);
+
+            // Close lightbox
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                setTimeout(() => lightbox.remove(), 300);
+            };
+
+            lightbox.addEventListener('click', closeLightbox);
+        });
+    });
+}
+
+// Note: setupLightbox is called both on DOMContentLoaded and after dynamic gallery loading.

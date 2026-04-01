@@ -13,11 +13,19 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://doraemon.tokyo/activities/250615_Waseda.html</loc>
+    <loc>https://doraemon.tokyo/activities/250524_MayFestival.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://doraemon.tokyo/activities/250926_atami.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/250615_Waseda.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://doraemon.tokyo/activities/251122_KomabaFestival.html</loc>
     <priority>0.7</priority>
   </url>
   <url>

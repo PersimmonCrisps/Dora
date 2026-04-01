@@ -6,7 +6,36 @@
         "image": "260331_Kyodai.jpeg",
         "link": "260331_Kyodai.html",
         "description": "京都大学ドラえもん同好会の方々と交流しました！",
-        "featured": true
+        "featured": true,
+        "gallery": [
+            "260331_Kyodai.jpeg"
+        ]
+    },
+    {
+        "title": "駒場祭2025",
+        "date": "2025.11.22-24",
+        "rawDate": "2025-11-22",
+        "image": "251122_KomabaFestival_1.jpeg",
+        "link": "251122_KomabaFestival.html",
+        "description": "駒場祭2025にて模擬店「ドラえもんの甘井屋どらやき」を出店しました。",
+        "featured": true,
+        "gallery": [
+            "251122_KomabaFestival_1.jpeg",
+            "251122_KomabaFestival_2.jpeg",
+            "251122_KomabaFestival_3.jpeg"
+        ]
+    },
+    {
+        "title": "熱海合宿",
+        "date": "2025.09.26-27",
+        "rawDate": "2025-09-26",
+        "image": "250926_atami.jpeg",
+        "link": "250926_atami.html",
+        "description": "2025年度熱海合宿の報告です！",
+        "featured": false,
+        "gallery": [
+            "250926_atami.jpeg"
+        ]
     },
     {
         "title": "早稲田大学コラボ",
@@ -15,16 +44,30 @@
         "image": "250615_Waseda.jpeg",
         "link": "250615_Waseda.html",
         "description": "早稲田大学ドラえもん研究会の方々とジャイアンの誕生日を祝いました！",
-        "featured": true
+        "featured": false,
+        "gallery": [
+            "250615_Waseda.jpeg"
+        ]
     },
     {
-        "title": "熱海合宿",
-        "date": "2025.09.26-27",
-        "rawDate": "2025-09-26",
-        "image": "250926_atami.jpeg",
-        "link": "250926_atami.html",
-        "description": "2025年度熱海合宿の報告です",
-        "featured": true
+        "title": "五月祭2025",
+        "date": "2025.05.24-25",
+        "rawDate": "2025-05-24",
+        "image": "250524_MayFestival_2.jpeg",
+        "link": "250524_MayFestival.html",
+        "description": "五月祭2025にて展示企画と会誌頒布を行いました。",
+        "featured": true,
+        "gallery": [
+            "250524_MayFestival_1.jpeg",
+            "250524_MayFestival_2.jpeg",
+            "250524_MayFestival_3.jpeg",
+            "250524_MayFestival_4.jpeg",
+            "250524_MayFestival_5.jpeg",
+            "250524_MayFestival_6.jpeg",
+            "250524_MayFestival_7.jpeg",
+            "250524_MayFestival_8.jpeg",
+            "250524_MayFestival_9.jpeg"
+        ]
     },
     {
         "title": "高岡合宿",
@@ -32,16 +75,10 @@
         "rawDate": "2024-09-21",
         "image": "240921_takaoka.jpeg",
         "link": "240921_takaoka.html",
-        "description": "2024年度高岡合宿の報告です",
-        "featured": false
-    },
-    {
-        "title": "活動報告テンプレ",
-        "date": "2024.06.15",
-        "rawDate": "2024-06-15",
-        "image": "tmp.jpeg",
-        "link": "report_template.html",
-        "description": "活動報告のテンプレート（公開時に削除）",
-        "featured": false
+        "description": "2024年度高岡合宿の報告です！",
+        "featured": false,
+        "gallery": [
+            "240921_takaoka.jpeg"
+        ]
     }
 ]
