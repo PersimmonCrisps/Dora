@@ -1,10 +1,10 @@
 /**
  * ドラえもんF同好会 - スタイルシート (CSS)
- * 
+ *
  * デザインコンセプト：
  * 「ドラえもんの未来感」と「親しみやすさ」を両立させた
  * ホワイトベースのブライト・グラスモルフィズムデザインです。
- * 
+ *
  * メンテナー向け：
  * - 色の変更は :root 変数 (--primary, --accent 等) を編集してください。
  * - 基本的なレイアウトは .container (max-width: 1200px) で制御されています。
@@ -84,6 +84,11 @@ header {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
+    transition: transform 1.0s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
 }
 
 .nav {

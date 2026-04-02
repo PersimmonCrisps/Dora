@@ -96,6 +96,29 @@ document.addEventListener('DOMContentLoaded', () => {
         loadActivities(activitiesFeaturedGrid, true);
     }
 
+    // Scroll Direction Header Control
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    const hideThreshold = 100;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        // Do not hide if mobile menu is open
+        const isMenuOpen = hamburger && hamburger.classList.contains('active');
+
+        if (!isMenuOpen) {
+            if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) {
+                // Scrolling down
+                header.classList.add('header-hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('header-hidden');
+            }
+        }
+        lastScrollY = currentScrollY;
+    }, { passive: true });
+
 });
 
 /**
