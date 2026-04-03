@@ -26,6 +26,18 @@
         ]
     },
     {
+        "title": "熱海合宿",
+        "date": "2025.09.26-27",
+        "rawDate": "2025-09-26",
+        "image": "250926_atami.jpeg",
+        "link": "250926_atami.html",
+        "description": "2025年度熱海合宿の報告です！",
+        "featured": false,
+        "gallery": [
+            "250926_atami.jpeg"
+        ]
+    },
+    {
         "title": "早稲田大学コラボ",
         "date": "2025.06.15",
         "rawDate": "2025-06-15",
@@ -55,6 +67,18 @@
             "250524_MayFestival_7.jpeg",
             "250524_MayFestival_8.jpeg",
             "250524_MayFestival_9.jpeg"
+        ]
+    },
+    {
+        "title": "高岡合宿",
+        "date": "2024.09.21-22",
+        "rawDate": "2024-09-21",
+        "image": "240921_takaoka.jpeg",
+        "link": "240921_takaoka.html",
+        "description": "2024年度高岡合宿の報告です！",
+        "featured": false,
+        "gallery": [
+            "240921_takaoka.jpeg"
         ]
     }
 ]
