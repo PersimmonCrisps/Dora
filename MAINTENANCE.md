@@ -7,7 +7,7 @@
 主な作業は **画像配置、Markdown作成** の2点です。
 
 ### ステップ1：画像を配置する
-- 追加したい画像を `public/assets/images/activities/` に保存します。
+- 追加したい画像を `src/assets/images/activities/` に保存します。
 - **推奨設定**:
     - ファイル名: `yymmdd_EventName_1.jpeg` （例: `260331_Kyodai_1.jpeg`）
     - 推奨解像度: 横幅 1200px 程度
@@ -61,6 +61,6 @@ gallery:
 
 ## 3. トラブルシューティング
 - **写真が表示されない**:
-    - Markdown の `image` や `gallery` に記述したファイル名が、`public/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
+    - Markdown の `image` に記述したファイル名が、`src/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
 - **デザインが崩れた**:
     - `src/styles/global.css` の設定を確認してください。共通パーツの変更は `src/components/` 内のファイルを編集します。

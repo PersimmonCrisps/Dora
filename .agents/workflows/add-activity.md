@@ -5,7 +5,7 @@ description: 新しい活動報告（アクティビティ）を追加する
 新しい活動を追加する場合、以下の手順を順番に実行してください。
 
 1. **画像の配置**
-   - ユーザーから提供された画像を `public/assets/images/activities/` に配置します。
+   - ユーザーから提供された画像を `src/assets/images/activities/` に配置します。
    - メイン画像ファイル名は `yymmdd_EventName.jpg` 形式に、ギャラリー用は `yymmdd_EventName_N.jpg` 形式にすることを推奨します。
 
 2. **Markdownファイルの作成**

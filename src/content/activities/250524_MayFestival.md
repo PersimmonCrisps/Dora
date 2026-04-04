@@ -12,7 +12,7 @@ gallery:
 - 250524_MayFestival_7.jpeg
 - 250524_MayFestival_8.jpeg
 - 250524_MayFestival_9.jpeg
-image: 250524_MayFestival_2.jpeg
+image: "250524_MayFestival_2.jpeg"
 rawDate: '2025-05-24'
 title: 五月祭2025
 ---

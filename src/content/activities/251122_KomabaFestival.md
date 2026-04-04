@@ -6,7 +6,7 @@ gallery:
 - 251122_KomabaFestival_1.jpeg
 - 251122_KomabaFestival_2.jpeg
 - 251122_KomabaFestival_3.jpeg
-image: 251122_KomabaFestival_1.jpeg
+image: "251122_KomabaFestival_1.jpeg"
 rawDate: '2025-11-22'
 title: 駒場祭2025
 ---
