@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://doraemon.tokyo',
   outDir: './dist',
   integrations: [sitemap({
-    // 下書きや練習用のページをサイトマップから除外
-    filter: (page) => !page.includes('/activities/practice-')
+    // 下書き、練習用記事、および /other/ フォルダ内のページをサイトマップから除外
+    filter: (page) => !page.includes('/activities/practice-') && !page.includes('/other/')
   })],
 });

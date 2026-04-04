@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
     const activities = await getCollection("activities");
@@ -20,12 +20,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/
 const mainImageSrc = `/src/assets/images/activities/${image}`;
 
 if (!images[mainImageSrc]) throw new Error(`"${mainImageSrc}" does not exist in glob: "/src/assets/images/activities/*.{jpeg,jpg,png,gif}"`);
+
+// OGP用の最適化画像生成 (SNS推奨サイズの横1200px)
+const ogpImage = await getImage({
+    src: images[mainImageSrc](),
+    width: 1200,
+    format: 'jpg',
+});
 ---
 
 <Layout
     title={`${title} | 東京大学ドラえもんF同好会`}
     description={description}
-    image={image}
+    image={ogpImage.src}
     noindex={entry.data.draft}
 >
     <main>

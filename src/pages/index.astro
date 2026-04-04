@@ -1,37 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ActivityCard from '../components/ActivityCard.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import ActivityCard from "../components/ActivityCard.astro";
+import { getCollection } from "astro:content";
 
-const title = "東京大学ドラえもんF同好会 | ドラえもん、F作品好きが集まるサークル";
-const description = "東京大学ドラえもんF同好会の公式サイト。ドラえもんや藤子・F・不二雄作品が好きな学生が集まるインカレサークルです。活動報告や新歓情報を掲載中。";
+const title =
+    "東京大学ドラえもんF同好会 | ドラえもん、F作品好きが集まるサークル";
+const description =
+    "東京大学ドラえもんF同好会の公式サイトです。ドラえもんや藤子・F・不二雄作品を愛する学生が集まり、映画鑑賞、ミュージアム訪問、学園祭出展などの活動を行っています。誰でも大歓迎！";
 
-const activities = await getCollection('activities', ({ data }) => {
+const activities = await getCollection("activities", ({ data }) => {
     return data.draft !== true;
 });
 const featuredActivities = activities
-    .filter(a => a.data.featured)
-    .sort((a, b) => new Date(b.data.rawDate).getTime() - new Date(a.data.rawDate).getTime());
+    .filter((a) => a.data.featured)
+    .sort(
+        (a, b) =>
+            new Date(b.data.rawDate).getTime() -
+            new Date(a.data.rawDate).getTime(),
+    );
 ---
 
 <Layout title={title} description={description}>
     <main>
         <section class="hero">
             <div class="container hero-content">
-                <h1 class="floating">東京大学<br>ドラえもんF同好会</h1>
-                <p>ドラえもんやF作品好きが集まる<span style="display: inline-block;">インカレサークルです。</span></p>
-                <a href="https://forms.gle/aEhMUVZBVREfEKMj9" target="_blank" rel="noopener noreferrer" class="btn">入会・お問い合わせ</a>
+                <h1 class="floating">東京大学<br />ドラえもんF同好会</h1>
+                <p>
+                    ドラえもんやF作品好きが集まる<span
+                        style="display: inline-block;"
+                        >インカレサークルです。</span>
+                </p>
+                <a
+                    href="https://forms.gle/aEhMUVZBVREfEKMj9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn">入会・お問い合わせ</a
+                >
             </div>
         </section>
 
         <section id="about">
             <div class="container">
                 <h2 class="section-title">私たちについて</h2>
-                <div class="card" style="max-width: 800px; margin: 0 auto; text-align: left;">
-                    <p>『F組のみんな！集合～！』ドラえもん好き＆F作品好き大歓迎の新設サークルです！<br>
-                        活動内容は定期的なミーティングの開催のほか、藤子・F・不二雄ミュージアムなどのドラえもん関連施設の訪問や五月祭・駒場祭での出展を予定しています。ドラえもんやF作品を通して楽しくおしゃべりできたら嬉しいです！<br>
-                        今はまだ未熟なサークルですが、時間をかけて大きなサークルにして行けたらいいなと思っています。興味がある方はぜひ気軽に覗きに来てください！</p>
-                    <a href="/assets/Flyer.pdf" target="_blank" rel="noopener noreferrer">新歓ビラはこちら</a>
+                <div
+                    class="card"
+                    style="max-width: 800px; margin: 0 auto; text-align: left;"
+                >
+                    <p>
+                        『F組のみんな！集合～！』ドラえもん好き＆F作品好き大歓迎の新設サークルです！<br
+                        />
+                        活動内容は定期的なミーティングの開催のほか、藤子・F・不二雄ミュージアムなどのドラえもん関連施設の訪問や五月祭・駒場祭での出展を予定しています。ドラえもんやF作品を通して楽しくおしゃべりできたら嬉しいです！<br
+                        />
+                        今はまだ未熟なサークルですが、時間をかけて大きなサークルにして行けたらいいなと思っています。興味がある方はぜひ気軽に覗きに来てください！
+                    </p>
+                    <a
+                        href="/assets/Flyer.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer">新歓ビラはこちら</a
+                    >
                 </div>
             </div>
         </section>
@@ -53,7 +79,9 @@ const featuredActivities = activities
                         <div class="timeline-content">
                             <div class="timeline-date">4/18</div>
                             <h3>西武線スタンプラリー開催</h3>
-                            <p>西武線沿線を巡るスタンプラリーを楽しみましょう。</p>
+                            <p>
+                                西武線沿線を巡るスタンプラリーを楽しみましょう。
+                            </p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -61,7 +89,9 @@ const featuredActivities = activities
                         <div class="timeline-content">
                             <div class="timeline-date">4/25</div>
                             <h3>ドラえもんミュージアム訪問</h3>
-                            <p>藤子・F・不二雄ミュージアムへみんなで遊びに行きます。</p>
+                            <p>
+                                藤子・F・不二雄ミュージアムへみんなで遊びに行きます。
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -70,22 +100,29 @@ const featuredActivities = activities
 
         <section id="activities">
             <div class="container">
-                <h2 class="section-title"><span style="display: inline-block;">活動内容・</span><span style="display: inline-block;">活動報告</span></h2>
+                <h2 class="section-title">
+                    <span style="display: inline-block;">活動内容・</span><span
+                        style="display: inline-block;">活動報告</span>
+                </h2>
                 <div class="grid" id="activities-featured-grid">
-                    {featuredActivities.length > 0 ? (
-                        featuredActivities.map(activity => (
-                            <ActivityCard 
-                                title={activity.data.title}
-                                date={activity.data.date}
-                                rawDate={activity.data.rawDate.toString()}
-                                image={activity.data.image}
-                                description={activity.data.description}
-                                link={activity.slug}
-                            />
-                        ))
-                    ) : (
-                        <p style="text-align:center; padding: 2rem;">表示できる活動がありません。</p>
-                    )}
+                    {
+                        featuredActivities.length > 0 ? (
+                            featuredActivities.map((activity) => (
+                                <ActivityCard
+                                    title={activity.data.title}
+                                    date={activity.data.date}
+                                    rawDate={activity.data.rawDate.toString()}
+                                    image={activity.data.image}
+                                    description={activity.data.description}
+                                    link={activity.slug}
+                                />
+                            ))
+                        ) : (
+                            <p style="text-align:center; padding: 2rem;">
+                                表示できる活動がありません。
+                            </p>
+                        )
+                    }
                 </div>
                 <!-- Show More Link -->
                 <div style="text-align: center; margin-top: 2rem;">
@@ -98,8 +135,17 @@ const featuredActivities = activities
             <div class="container" style="text-align: center;">
                 <h2 class="section-title">入会・お問い合わせ</h2>
                 <div class="card" style="max-width: 600px; margin: 0 auto;">
-                    <p>入会希望や取材、その他のご依頼はこちらから。お待ちしております。</p>
-                    <a href="https://forms.gle/aEhMUVZBVREfEKMj9" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 2rem; display: inline-block;">入会・お問い合わせ</a>
+                    <p>
+                        入会希望や取材、その他のご依頼はこちらから。お待ちしております。
+                    </p>
+                    <a
+                        href="https://forms.gle/aEhMUVZBVREfEKMj9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn"
+                        style="margin-top: 2rem; display: inline-block;"
+                        >入会・お問い合わせ</a
+                    >
                 </div>
             </div>
         </section>

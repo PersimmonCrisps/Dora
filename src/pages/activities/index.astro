@@ -4,7 +4,7 @@ import ActivityCard from '../../components/ActivityCard.astro';
 import { getCollection } from 'astro:content';
 
 const title = "活動内容・活動報告 | 東京大学ドラえもんF同好会";
-const description = "ドラえもんF同好会の活動一覧です。";
+const description = "東京大学ドラえもんF同好会の活動報告一覧。五月祭・駒場祭での展示、ミュージアム訪問、映画鑑賞会など、日々の多彩なサークル活動の様子を写真と共に紹介しています。";
 
 const activities = await getCollection('activities', ({ data }) => {
     return data.draft !== true;
