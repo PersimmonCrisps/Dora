@@ -679,13 +679,15 @@ footer {
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
     object-fit: contain;
     border-radius: 0.5rem;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
-    transform: scale(0.8);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .lightbox.active img {

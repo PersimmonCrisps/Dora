@@ -195,7 +195,9 @@ function setupLightbox() {
         img.dataset.lightboxInit = "true";
 
         img.addEventListener('click', (e) => {
-            const src = e.target.getAttribute('src');
+            const thumbSrc = e.target.getAttribute('src');
+            const fullSrc = e.target.dataset.fullSrc; // Get high-res URL if available
+            const src = fullSrc || thumbSrc;
             const alt = e.target.getAttribute('alt');
 
             const lightbox = document.createElement('div');

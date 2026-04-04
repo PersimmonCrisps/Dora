@@ -27,6 +27,21 @@ const ogpImage = await getImage({
     width: 1200,
     format: 'jpg',
 });
+
+// ギャラリー用の高解像度画像（拡大表示用）を事前に生成
+const galleryImages = gallery ? await Promise.all(
+    gallery.map(async (img) => {
+        const imagePath = `/src/assets/images/activities/${img}`;
+        if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist`);
+        
+        // サムネイル用 (400px)
+        const thumb = await getImage({ src: images[imagePath](), width: 400, height: 400, format: 'webp' });
+        // 拡大表示用 (1600px)
+        const full = await getImage({ src: images[imagePath](), width: 1600, format: 'webp' });
+        
+        return { thumb: thumb.src, full: full.src, alt: `${title}のフォトギャラリー画像` };
+    })
+) : [];
 ---
 
 <Layout
@@ -68,23 +83,23 @@ const ogpImage = await getImage({
 
                 <!-- フォトギャラリー (SSGで描画 & 最適化) -->
                 {
-                    gallery && gallery.length > 0 && (
+                    galleryImages && galleryImages.length > 0 && (
                         <div id="activity-gallery">
                             <h2 style="color: var(--primary); font-size: 1.5rem; margin: 3rem 0 1.5rem; text-align: center;">
                                 フォトギャラリー
                             </h2>
                             <div class="gallery-grid">
-                                {gallery.map((img) => {
-                                    const imagePath = `/src/assets/images/activities/${img}`;
-                                    if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "/src/assets/images/activities/*.{jpeg,jpg,png,gif}"`);
+                                {galleryImages.map((img) => {
                                     return (
                                         <div class="gallery-item">
-                                            <Image
-                                                src={images[imagePath]()}
-                                                alt={`${title}のフォトギャラリー画像`}
-                                                width={400}
-                                                height={400}
-                                                quality="mid"
+                                            <img
+                                                src={img.thumb}
+                                                alt={img.alt}
+                                                data-full-src={img.full}
+                                                width="400"
+                                                height="400"
+                                                loading="lazy"
+                                                decoding="async"
                                             />
                                         </div>
                                     );
