@@ -6,7 +6,9 @@ import { getCollection } from 'astro:content';
 const title = "活動内容・活動報告 | 東京大学ドラえもんF同好会";
 const description = "ドラえもんF同好会の活動一覧です。";
 
-const activities = await getCollection('activities');
+const activities = await getCollection('activities', ({ data }) => {
+    return data.draft !== true;
+});
 const sortedActivities = activities.sort((a, b) => new Date(b.data.rawDate).getTime() - new Date(a.data.rawDate).getTime());
 ---
 

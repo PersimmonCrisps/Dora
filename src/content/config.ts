@@ -7,9 +7,10 @@ const activitiesCollection = defineCollection({
 		description: z.string(),
 		date: z.string(),
 		rawDate: z.string(),
-		image: z.string(), // Back to filename string for easier maintenance
+		image: z.string(),
 		featured: z.boolean().default(false),
 		gallery: z.array(z.string()).optional(),
+		draft: z.boolean().optional(), // Added for Practice / Hidden mode
 	}),
 });
 

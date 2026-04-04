@@ -23,6 +23,7 @@ featured: true
 gallery:
   - "画像1.jpg"
   - "画像2.jpg"
+draft: true
 ---
 
 活動内容はここに書く（HTMLタグ有効）

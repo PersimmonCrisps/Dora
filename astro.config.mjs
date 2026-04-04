@@ -5,5 +5,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://doraemon.tokyo',
   outDir: './dist',
-  integrations: [sitemap()],
+  integrations: [sitemap({
+    // 下書きや練習用のページをサイトマップから除外
+    filter: (page) => !page.includes('/activities/practice-')
+  })],
 });

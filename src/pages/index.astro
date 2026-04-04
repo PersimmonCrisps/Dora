@@ -6,7 +6,9 @@ import { getCollection } from 'astro:content';
 const title = "東京大学ドラえもんF同好会 | ドラえもん、F作品好きが集まるサークル";
 const description = "東京大学ドラえもんF同好会の公式サイト。ドラえもんや藤子・F・不二雄作品が好きな学生が集まるインカレサークルです。活動報告や新歓情報を掲載中。";
 
-const activities = await getCollection('activities');
+const activities = await getCollection('activities', ({ data }) => {
+    return data.draft !== true;
+});
 const featuredActivities = activities
     .filter(a => a.data.featured)
     .sort((a, b) => new Date(b.data.rawDate).getTime() - new Date(a.data.rawDate).getTime());
