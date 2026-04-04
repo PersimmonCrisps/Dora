@@ -126,62 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Loads activities from JSON and renders them into the container
- * @param {HTMLElement} container
- * @param {boolean} filterFeatured - Whether to only show featured items
+ * Astro移行に伴い、データの読み込みはビルド時（src/pages/index.astro）に
+ * 行われるようになったため、以下のJavaScriptによる動的読み込みは不要になりました。
  */
+/*
 async function loadActivities(container, filterFeatured = false) {
-    const isSubDir = window.location.pathname.includes('/activities/');
-    const jsonPath = isSubDir ? '../assets/data/activities.json' : 'assets/data/activities.json';
-    const imagePrefix = isSubDir ? '../assets/images/activities/' : 'assets/images/activities/';
-    const linkPrefix = isSubDir ? '' : 'activities/';
-
-    try {
-        const response = await fetch(jsonPath);
-        if (!response.ok) throw new Error('Failed to fetch activities');
-        const activities = await response.json();
-
-        let displayActivities = activities;
-
-        if (filterFeatured) {
-            // Show only featured items
-            displayActivities = activities.filter(activity => activity.featured);
-        } else {
-            // Sort by date descending for the full list
-            displayActivities.sort((a, b) => new Date(b.rawDate) - new Date(a.rawDate));
-        }
-
-        if (displayActivities.length === 0) {
-            container.innerHTML = '<p style="text-align:center; padding: 2rem;">表示できる活動がありません。</p>';
-            return;
-        }
-
-        container.innerHTML = displayActivities.map(activity => `
-            <a href="${linkPrefix}${activity.link}" class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date="${activity.rawDate}">
-                <img src="${imagePrefix}${activity.image}" alt="${activity.title}のイメージ画像" class="activity-image">
-                <div class="activity-content">
-                    <h3>${activity.title}</h3>
-                    <div class="activity-date">${activity.date}</div>
-                    <p>${activity.description}</p>
-                    <div class="read-more">Read More <span>→</span></div>
-                </div>
-            </a>
-        `).join('');
-
-        // Apply fade-in animation to dynamic elements
-        const newCards = container.querySelectorAll('.activity-card');
-        newCards.forEach(card => {
-            card.classList.add('fade-in');
-            if (typeof observer !== 'undefined') {
-                observer.observe(card);
-            }
-        });
-
-    } catch (error) {
-        console.error('Error loading activities:', error);
-        container.innerHTML = '<p style="text-align:center; padding: 2rem;">活動一覧の読み込みに失敗しました。JavaScriptを有効にしてください。</p>';
-    }
+    // 処理は現在Astro側で完結しています
 }
+*/
 
 // Loading Screen
 const loading = document.getElementById('loading');
@@ -221,44 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Initializes the gallery for an individual activity page
- * @param {HTMLElement} container
+ * Astro移行に伴い、ギャラリーの生成はビルド時（src/pages/activities/[slug].astro）に
+ * 行われるようになったため、以下のJavaScriptによる動的読み込みは不要になりました。
  */
+/*
 async function initActivityGallery(container) {
-    // Determine the activity ID from the current filename
-    const pathParts = window.location.pathname.split('/');
-    const currentFile = pathParts[pathParts.length - 1];
-
-    // Fallback for root or index
-    if (!currentFile || currentFile === 'index.html') return;
-
-    try {
-        const response = await fetch('../assets/data/activities.json');
-        if (!response.ok) throw new Error('Failed to fetch activity data');
-        const activities = await response.json();
-
-        const activity = activities.find(a => a.link === currentFile);
-
-        if (activity && activity.gallery && activity.gallery.length > 0) {
-            container.innerHTML = `
-                <h2 style="color: var(--primary); font-size: 1.5rem; margin: 3rem 0 1.5rem; text-align: center;">フォトギャラリー</h2>
-                <div class="gallery-grid">
-                    ${activity.gallery.map(img => `
-                        <div class="gallery-item">
-                            <img src="../assets/images/activities/${img}" alt="${activity.title}の写真">
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-
-            // Re-initialize lightbox for newly added images
-            setupLightbox();
-        }
-    } catch (error) {
-        console.error('Error loading gallery:', error);
-        container.innerHTML = '<p style="text-align:center; padding: 2rem;">ギャラリーの読み込みに失敗しました。JavaScriptを有効にしてください。</p>';
-    }
+    // 処理は現在Astro側で完結しています
 }
+*/
 
 /**
  * Sets up the lightbox click event listeners

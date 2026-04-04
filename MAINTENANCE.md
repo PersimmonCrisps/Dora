@@ -63,4 +63,4 @@ gallery:
 - **写真が表示されない**:
     - Markdown の `image` や `gallery` に記述したファイル名が、`public/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
 - **デザインが崩れた**:
-    - `public/assets/css/style.css` の設定を確認してください。共通パーツの変更は `src/components/` 内のファイルを編集します。
+    - `src/styles/global.css` の設定を確認してください。共通パーツの変更は `src/components/` 内のファイルを編集します。
