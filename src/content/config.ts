@@ -10,7 +10,7 @@ const activitiesCollection = defineCollection({
 		image: z.string(),
 		featured: z.boolean().default(false),
 		gallery: z.array(z.string()).optional(),
-		draft: z.boolean().optional(), // Added for Practice / Hidden mode
+		published: z.boolean().default(true), // デフォルトで公開。隠したい場合のみ false。
 	}),
 });
 

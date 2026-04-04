@@ -23,10 +23,10 @@ featured: true
 gallery:
   - "画像1.jpg"
   - "画像2.jpg"
-draft: true
+published: true
 ---
 
-※ `draft: true` を設定すると一覧から消えます。
+※ **`published` はデフォルトで `true`（公開）** です。隠したい場合のみ `false` にしてください。
 ※ さらにファイル名を `practice-` で始めると、検索エンジンのサイトマップからも除外されます。
 
 活動内容はここに書く（HTMLタグ有効）

@@ -33,7 +33,7 @@ const ogpImage = await getImage({
     title={`${title} | 東京大学ドラえもんF同好会`}
     description={description}
     image={ogpImage.src}
-    noindex={entry.data.draft}
+    noindex={!entry.data.published}
 >
     <main>
         <section

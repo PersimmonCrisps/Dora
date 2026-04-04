@@ -9,7 +9,7 @@ const description =
     "東京大学ドラえもんF同好会の公式サイトです。ドラえもんや藤子・F・不二雄作品を愛する学生が集まり、映画鑑賞、ミュージアム訪問、学園祭出展などの活動を行っています。誰でも大歓迎！";
 
 const activities = await getCollection("activities", ({ data }) => {
-    return data.draft !== true;
+    return data.published !== false;
 });
 const featuredActivities = activities
     .filter((a) => a.data.featured)

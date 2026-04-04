@@ -9,9 +9,9 @@ gallery:
 image: "251122_KomabaFestival_1.jpeg"
 rawDate: '2025-11-22'
 title: 駒場祭2025
+published: true
 ---
 
-<!-- メイン画像 -->
 
 <!-- 本文 -->
 <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 1.5rem;">【活動報告】</h2>
