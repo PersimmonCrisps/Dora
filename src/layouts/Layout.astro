@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+}
+
+const { 
+	title, 
+	description = "東京大学ドラえもんF同好会の公式サイト。ドラえもんや藤子・F・不二雄作品が好きな学生が集まるインカレサークルです。",
+	image = "/assets/images/icon.jpg" 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="/assets/images/icon.jpg" />
+		<title>{title}</title>
+		
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+		<meta property="og:type" content="website" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="/assets/css/style.css?v=1.3">
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-61HH88G3J8" is:inline></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'G-61HH88G3J8');
+		</script>
+	</head>
+	<body>
+		<Header />
+		<slot />
+		<Footer />
+		<script src="/assets/js/main.js" is:inline></script>
+	</body>
+</html>
+
+<style is:global>
+	/* Any additional global styles or overrides */
+</style>

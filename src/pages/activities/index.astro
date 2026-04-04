@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ActivityCard from '../../components/ActivityCard.astro';
+import { getCollection } from 'astro:content';
+
+const title = "活動内容・活動報告 | 東京大学ドラえもんF同好会";
+const description = "ドラえもんF同好会の活動一覧です。";
+
+const activities = await getCollection('activities');
+const sortedActivities = activities.sort((a, b) => new Date(b.data.rawDate).getTime() - new Date(a.data.rawDate).getTime());
+---
+
+<Layout title={title} description={description}>
+    <main>
+        <section class="hero" style="height: auto; padding-top: 180px; padding-bottom: 2rem;">
+            <div class="container hero-content">
+                <h1 class="floating">活動内容・活動報告</h1>
+                <p>ドラえもんF同好会の活動一覧です。</p>
+            </div>
+        </section>
+
+        <section id="activities-list">
+            <div class="container">
+                <div class="grid" id="activities-list-grid">
+                    {sortedActivities.length > 0 ? (
+                        sortedActivities.map(activity => (
+                            <ActivityCard 
+                                title={activity.data.title}
+                                date={activity.data.date}
+                                rawDate={activity.data.rawDate.toString()}
+                                image={activity.data.image}
+                                description={activity.data.description}
+                                link={activity.slug}
+                            />
+                        ))
+                    ) : (
+                        <p style="text-align:center; padding: 2rem;">表示できる活動がありません。</p>
+                    )}
+                </div>
+                <div style="margin-top: 3rem; text-align: center;">
+                    <a href="/" class="btn">トップに戻る</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

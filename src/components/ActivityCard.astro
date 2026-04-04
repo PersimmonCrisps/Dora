@@ -1,0 +1,27 @@
+---
+interface Props {
+    title: string;
+    date: string;
+    rawDate: string;
+    image: string;
+    description: string;
+    link: string;
+}
+
+const { title, date, rawDate, image, description, link } = Astro.props;
+// If the image is just a filename, prepend the path.
+const imageUrl = image.startsWith('http') ? image : `/assets/images/activities/${image}`;
+// Astro clean URLs: remove .html if present
+const cleanLink = link.replace('.html', '');
+const href = `/activities/${cleanLink}`;
+---
+
+<a href={href} class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date={rawDate}>
+    <img src={imageUrl} alt={`${title}のイメージ画像`} class="activity-image" />
+    <div class="activity-content">
+        <h3>{title}</h3>
+        <div class="activity-date">{date}</div>
+        <p>{description}</p>
+        <div class="read-more">Read More <span>→</span></div>
+    </div>
+</a>
