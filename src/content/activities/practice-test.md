@@ -2,6 +2,8 @@
 title: "練習用記事（非公開テスト）"
 date: "2026.04.04"
 rawDate: "2026-04-04"
+gallary:
+- 251122_KomabaFestival_1.jpeg
 image: "251122_KomabaFestival_1.jpeg"
 description: "これは練習用の記事です。一覧には表示されません。"
 featured: false
