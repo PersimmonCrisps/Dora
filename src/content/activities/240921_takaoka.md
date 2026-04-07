@@ -6,7 +6,7 @@ gallery: []
 image: "240921_takaoka.jpeg"
 rawDate: 2024.09.21
 title: 高岡合宿
-published: true
+published: false
 ---
 
 <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 1.5rem;">技術を磨く、熱い夏</h2>
