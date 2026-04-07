@@ -1,0 +1,128 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image, getImage } from "astro:assets";
+
+export async function getStaticPaths() {
+    const activities = await getCollection("activities");
+    return activities.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, date, description, image, gallery } = entry.data;
+
+/** 画像の一括インポート (src/assets/images/activities/ 内の全画像) */
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/activities/*.{jpeg,jpg,png,gif}');
+const mainImageSrc = `/src/assets/images/activities/${image}`;
+
+if (!images[mainImageSrc]) throw new Error(`"${mainImageSrc}" does not exist in glob: "/src/assets/images/activities/*.{jpeg,jpg,png,gif}"`);
+
+// OGP用の最適化画像生成 (SNS推奨サイズの横1200px)
+const ogpImage = await getImage({
+    src: images[mainImageSrc](),
+    width: 1200,
+    format: 'jpg',
+});
+
+// ギャラリー用の高解像度画像（拡大表示用）を事前に生成
+const galleryImages = gallery ? await Promise.all(
+    gallery.map(async (img) => {
+        const imagePath = `/src/assets/images/activities/${img}`;
+        if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist`);
+        
+        // サムネイル用 (400px)
+        const thumb = await getImage({ src: images[imagePath](), width: 400, height: 400, format: 'webp' });
+        // 拡大表示用 (1600px)
+        const full = await getImage({ src: images[imagePath](), width: 1600, format: 'webp' });
+        
+        return { thumb: thumb.src, full: full.src, alt: `${title}のフォトギャラリー画像` };
+    })
+) : [];
+---
+
+<Layout
+    title={`${title} | 東京大学ドラえもんF同好会`}
+    description={description}
+    image={ogpImage.src}
+    noindex={!entry.data.published}
+>
+    <main>
+        <section
+            class="hero"
+            style="height: auto; padding-top: 180px; padding-bottom: 2rem;"
+        >
+            <div class="container hero-content">
+                <h1 class="floating">{title}</h1>
+                <p>{date}</p>
+            </div>
+        </section>
+
+        <section class="activity-detail">
+            <div class="container">
+                <div class="card" style="background: var(--white);">
+                    <!-- メイン画像 (Astro Imageによる最適化) -->
+                    <div class="featured-image-wrapper">
+                        <Image
+                            src={images[mainImageSrc]()}
+                            alt={`${title}のメイン写真`}
+                            width={1200}
+                            quality="high"
+                            style="width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;"
+                        />
+                    </div>
+
+                    <!-- 本文 -->
+                    <div class="activity-body">
+                        <Content />
+                    </div>
+                </div>
+
+                <!-- フォトギャラリー (SSGで描画 & 最適化) -->
+                {
+                    galleryImages && galleryImages.length > 0 && (
+                        <div id="activity-gallery">
+                            <h2 style="color: var(--primary); font-size: 1.5rem; margin: 3rem 0 1.5rem; text-align: center;">
+                                フォトギャラリー
+                            </h2>
+                            <div class="gallery-grid">
+                                {galleryImages.map((img) => {
+                                    return (
+                                        <div class="gallery-item">
+                                            <img
+                                                src={img.thumb}
+                                                alt={img.alt}
+                                                data-full-src={img.full}
+                                                width="400"
+                                                height="400"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )
+                }
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <a href="/activities" class="btn">活動報告一覧に戻る</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style is:global>
+    .activity-body p {
+        margin-bottom: 1.5rem;
+    }
+    .activity-body a {
+        color: var(--primary);
+        text-decoration: underline;
+    }
+</style>

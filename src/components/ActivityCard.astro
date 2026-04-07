@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+    title: string;
+    date: string;
+    rawDate: string;
+    image: string; // Filename string
+    description: string;
+    link: string;
+}
+
+const { title, date, rawDate, image, description, link } = Astro.props;
+
+/** 画像の一括インポート (src/assets/images/activities/ 内の全画像) */
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/activities/*.{jpeg,jpg,png,gif}');
+const imagePath = `/src/assets/images/activities/${image}`;
+
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "/src/assets/images/activities/*.{jpeg,jpg,png,gif}"`);
+
+const cleanLink = link.replace('.html', '');
+const href = `/activities/${cleanLink}`;
+---
+
+<a href={href} class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date={rawDate}>
+    <Image 
+        src={images[imagePath]()} 
+        alt={`${title}のアイキャッチ画像`} 
+        class="activity-image" 
+        width={800}
+        quality="mid"
+    />
+    <div class="activity-content">
+        <h3>{title}</h3>
+        <div class="activity-date">{date}</div>
+        <p>{description}</p>
+        <div class="read-more">Read More <span>→</span></div>
+    </div>
+</a>

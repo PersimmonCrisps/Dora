@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /other/
+Allow: /
+
+Sitemap: https://doraemon.tokyo/sitemap-index.xml

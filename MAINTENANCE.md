@@ -1,74 +1,72 @@
-# 運営・メンテナンスガイド
+# 運営・メンテナンスガイド (Astro版)
 
-このドキュメントでは、東大ドラえもんF同好会ウェブサイトの更新手順を解説します。
+このドキュメントでは、東大ドラえもんF同好会ウェブサイト（Astro版）の更新手順を解説します。
 
 ## 1. 新しい活動（アクティビティ）を追加する手順
 
-主な作業は **画像配置、JSON更新、HTML作成、sitemap.xml更新** の4点です。
+主な作業は **画像配置、Markdown作成** の2点です。
 
 ### ステップ1：画像を配置する
-- 追加したい画像を `assets/images/activities/` に保存します。
+- 追加したい画像を `src/assets/images/activities/` に保存します。
 - **推奨設定**:
     - ファイル名: `yymmdd_EventName_1.jpeg` （例: `260331_Kyodai_1.jpeg`）
     - 推奨解像度: 横幅 1200px 程度
     - ファイル形式: `.jpeg` または `.png`
 
-### ステップ2：JSONデータを更新する
-`assets/data/activities.json` を開き、新しい活動データを追加します。
-```json
-{
-    "title": "活動タイトル",
-    "date": "2026.03.31",
-    "rawDate": "2026-03-31",
-    "image": "メイン画像ファイル名.jpg",
-    "link": "作成するHTMLファイル名.html",
-    "description": "一覧ページに表示される短い説明文",
-    "featured": true,
-    "gallery": [
-        "画像1.jpg",
-        "画像2.jpg"
-    ]
-}
+### ステップ2：Markdownファイルを作成する
+`src/content/activities/` 内に新しいファイルを作成します（例: `260331_Kyodai.md`）。
+ファイルの冒頭（フロントマター）に以下のメタデータを記述し、その下に本文を書きます。
+
+```markdown
+---
+title: "活動タイトル"
+date: "2026.03.31"
+rawDate: "2026-03-31"
+image: "メイン画像ファイル名.jpg"
+description: "一覧ページに表示される短い説明文"
+featured: true
+gallery:
+  - "画像1.jpg"
+  - "画像2.jpg"
+published: true
+---
+
+【活動報告】
+ここに本文を記述します。HTMLタグも使用可能です。
 ```
+
 - `featured`: `true` にするとトップページに表示されます。
-- `gallery`: ここに画像を記述するだけで、ページ内のフォトギャラリーが自動生成されます。
+- `gallery`: 画像ファイル名をリスト形式で記述すると、フォトギャラリーが自動生成されます。
+- `published`: **デフォルトで `true`（公開）** です。項目自体を消すか `true` に設定すると公開されます。
+    - **非公開にしたい場合のみ**: `published: false` と記述してください（ドラフト用）。
+    - **SNSシェア画像 (OGP)**: `image` に指定したファイルから、Astroが自動的にSNS用の最適化画像（1200px）を生成します。手動でのOGP画像作成は不要です。
+    - **検索エンジン除外**: 外部に一切見せないようにしたい場合は、ファイル名を `practice-` で始めるようにしてください（例: `practice-test.md`）。これによりサイトマップからも自動除外されます。また、`/other/` フォルダ内のページも同様に自動除外されます。
 
-### ステップ3：HTMLページを作成する
-1. `activities/report_template.html` をコピーします。
-2. ファイル名を JSON の `link` で指定した名前に変更します。
-3. ファイル内のタイトルや日付、本文を書き換えます。
-
-### ステップ4：サイトマップ (sitemap.xml) の更新
-新しい活動ページを追加した後は、検索エンジン（Google等）に登録するために `sitemap.xml` も更新することを推奨します。
-
-1. `sitemap.xml` を開きます。
-2. 一番下の `</urlset>` の直前に、以下のテンプレートをコピーして貼り付けます。
-3. `<loc>` の中身を作成したページのURLに書き換えてください。
-
-```xml
-  <url>
-    <loc>https://doraemon.tokyo/activities/作成したファイル名.html</loc>
-    <priority>0.7</priority>
-  </url>
-```
+### ステップ3：確認と公開
+1. ローカルで `npm run dev` を実行し、ブラウザで正しく表示されるか確認します。
+2. 問題なければ GitHub へプッシュします。GitHub Actions により自動的にビルドとデプロイが行われます。
+3. **コンポーネントおよびレイアウトの修正**:
+    - デザインや共通部分を修正したい場合は、`src/layouts/Layout.astro` や `src/components/` 内の各コンポーネントを直接編集します。
 
 ---
 
-## 2. サイトの構造（開発者向け）
+## 2. 開発者向けの構造
 
-### 主要ファイル
-- `index.html`: トップページ。活動一覧はJSで動的に読み込まれます。
-- `assets/js/main.js`:
-    - `loadActivities()`: JSONから活動リストを取得してカードを表示。
-    - `initActivityGallery()`: ページ名に基づき、該当する活動の写真をJSONから探して表示。
-    - `setupLightbox()`: 写真をクリックした際の拡大表示。
-- `assets/css/style.css`: 全体のデザイン。ドラえもんカラーの変数が `:root` に定義されています。
+### 主要ディレクトリ
+- `src/layouts/Layout.astro`: 全ページの共通枠。
+- `src/components/`: ヘッダー、フッター、カードなどの部品。
+- `src/pages/`: 各種ページ。個別記事は `[slug].astro` で自動生成されます。
+- `public/assets/`: 画像、CSS、および既存の動作を支える `main.js`。
+
+### 便利なコマンド
+- `npm run dev`: 開発用サーバーを起動（http://localhost:4321）
+- `npm run build`: 本番用ファイルの書き出し
+    - **自動圧縮**: ビルド時に `astro-compress` が走り、HTML/CSS/JS/SVGが自動的に最小化されます。
 
 ---
 
 ## 3. トラブルシューティング
 - **写真が表示されない**:
-    - `activities.json` の `link`（ファイル名）と、実際のHTMLファイル名が完全に一致しているか確認してください。
-    - 画像パスが `../assets/images/activities/` から見て正しいか確認してください。
-- **ドラえもんカラーを使いたい**:
-    - CSSの変数（`var(--primary)` など）を使用してください。
+    - Markdown の `image` に記述したファイル名が、`src/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
+- **デザインが崩れた**:
+    - `src/styles/global.css` の設定を確認してください。共通パーツの変更は `src/components/` 内のファイルを編集します。
