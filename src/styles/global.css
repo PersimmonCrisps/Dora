@@ -10,6 +10,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Outfit';
     src: url('../assets/fonts/outfit-400.woff2') format('woff2');
@@ -17,6 +18,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Outfit';
     src: url('../assets/fonts/outfit-600.woff2') format('woff2');
@@ -24,6 +26,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Outfit';
     src: url('../assets/fonts/outfit-800.woff2') format('woff2');
@@ -39,6 +42,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Inter';
     src: url('../assets/fonts/inter-500.woff2') format('woff2');
@@ -46,6 +50,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Inter';
     src: url('../assets/fonts/inter-700.woff2') format('woff2');
@@ -639,7 +644,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Add this for ::after positioning */
+    position: relative;
+    isolation: isolate;
+    /* Create a stacking context to keep ::after above parent background but below SVG */
 }
 
 .loading-icon::after {
@@ -649,7 +656,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 150, 214, 0.6) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 150, 214, 0.9) 0%, rgba(0, 150, 214, 0.6) 45%, transparent 85%);
     border-radius: 50%;
     z-index: -1;
     animation: aura-pulse 2s infinite ease-in-out;
@@ -658,7 +665,8 @@ footer {
 .loading-icon svg {
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure SVG is above aura */
+    z-index: 1;
+    /* Ensure SVG is above aura */
 }
 
 @keyframes pulse {
@@ -681,12 +689,14 @@ footer {
 @keyframes aura-pulse {
     0% {
         transform: scale(1);
-        opacity: 0.6;
+        opacity: 0.9;
     }
+
     70% {
-        transform: scale(2.2);
+        transform: scale(2.5);
         opacity: 0;
     }
+
     100% {
         transform: scale(1);
         opacity: 0;
