@@ -168,24 +168,32 @@ const { activeNav = "" } = Astro.props;
         const hideThreshold = 100;
 
         if (header) {
+            let ticking = false;
+
             window.addEventListener(
                 "scroll",
                 () => {
-                    const currentScrollY = window.scrollY;
-                    const isMenuOpen =
-                        hamburger && hamburger.classList.contains("active");
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const currentScrollY = window.scrollY;
+                            const isMenuOpen =
+                                hamburger && hamburger.classList.contains("active");
 
-                    if (!isMenuOpen) {
-                        if (
-                            currentScrollY > lastScrollY &&
-                            currentScrollY > hideThreshold
-                        ) {
-                            header.classList.add("header-hidden");
-                        } else {
-                            header.classList.remove("header-hidden");
-                        }
+                            if (!isMenuOpen) {
+                                if (
+                                    currentScrollY > lastScrollY &&
+                                    currentScrollY > hideThreshold
+                                ) {
+                                    header.classList.add("header-hidden");
+                                } else {
+                                    header.classList.remove("header-hidden");
+                                }
+                            }
+                            lastScrollY = currentScrollY;
+                            ticking = false;
+                        });
+                        ticking = true;
                     }
-                    lastScrollY = currentScrollY;
                 },
                 { passive: true },
             );
