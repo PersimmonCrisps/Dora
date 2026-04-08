@@ -1,4 +1,7 @@
 ---
+import { getImage } from 'astro:assets';
+import defaultIcon from '../assets/images/icon.jpg';
+
 interface Props {
 	title: string;
 	description: string;
@@ -8,13 +11,18 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/assets/images/icon.jpg', noindex = false } = Astro.props;
+const { title, description, image, noindex = false } = Astro.props;
+
+// Process the default icon to get a hashed/optimized URL
+const favicon = await getImage({ src: defaultIcon, width: 32, height: 32, format: 'jpg' });
+const defaultOgImage = await getImage({ src: defaultIcon, width: 1200, height: 630, format: 'jpg' });
+const resolvedImage = image || defaultOgImage.src;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/jpeg" href="/assets/images/icon.jpg" />
+<link rel="icon" type="image/jpeg" href={favicon.src} />
 <meta name="generator" content={Astro.generator} />
 
 {noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
@@ -32,14 +40,14 @@ const { title, description, image = '/assets/images/icon.jpg', noindex = false }
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.site)} />
+<meta property="og:image" content={new URL(resolvedImage, Astro.site)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.site)} />
+<meta property="twitter:image" content={new URL(resolvedImage, Astro.site)} />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

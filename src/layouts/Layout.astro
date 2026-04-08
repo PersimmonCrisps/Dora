@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from '../components/BaseHead.astro';
+import { getImage } from "astro:assets";
+import defaultIcon from '../assets/images/icon.jpg';
 import '../styles/global.css';
 
 interface Props {
@@ -14,15 +16,18 @@ interface Props {
 const { 
 	title, 
 	description = "東京大学ドラえもんF同好会の公式サイト。ドラえもんや藤子・F・不二雄作品が好きな学生が集まるインカレサークルです。",
-	image = "/assets/images/icon.jpg",
+	image,
 	noindex = false
 } = Astro.props;
+
+// Use default icon if no image is provided, and ensure it's processed by Astro
+const resolvedImage = image || (await getImage({ src: defaultIcon, width: 1200, format: 'jpg' })).src;
 ---
 
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<BaseHead title={title} description={description} image={image} noindex={noindex} />
+		<BaseHead title={title} description={description} image={resolvedImage} noindex={noindex} />
 
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-61HH88G3J8" is:inline></script>
@@ -37,7 +42,40 @@ const {
 		<Header />
 		<slot />
 		<Footer />
-		<script src="/assets/js/main.js" is:inline></script>
+
+		<script>
+			// --- Intersection Observer for Scroll Animations ---
+			const observerOptions = { threshold: 0.1 };
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+					}
+				});
+			}, observerOptions);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const fadeElements = document.querySelectorAll('.card, .timeline-item, .hero-content');
+				fadeElements.forEach(el => {
+					el.classList.add('fade-in');
+					observer.observe(el);
+				});
+
+				// --- Smooth Scroll for navigation links ---
+				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+					anchor.addEventListener('click', function (e) {
+						e.preventDefault();
+						const targetAnchor = e.currentTarget as HTMLAnchorElement;
+						const href = targetAnchor.getAttribute('href');
+						if (!href) return;
+						const target = document.querySelector(href);
+						if (target) {
+							target.scrollIntoView({ behavior: 'smooth' });
+						}
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
 

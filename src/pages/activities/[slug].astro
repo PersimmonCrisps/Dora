@@ -126,3 +126,41 @@ const galleryImages = gallery ? await Promise.all(
         text-decoration: underline;
     }
 </style>
+
+<script>
+    function setupLightbox() {
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        galleryItems.forEach(el => {
+            const img = el as HTMLImageElement;
+            if (img.dataset.lightboxInit) return;
+            img.dataset.lightboxInit = "true";
+
+            img.addEventListener('click', (e) => {
+                const target = e.target as HTMLImageElement;
+                const thumbSrc = target.getAttribute('src');
+                const fullSrc = target.dataset.fullSrc;
+                const src = fullSrc || thumbSrc;
+                const alt = target.getAttribute('alt');
+
+                const lightbox = document.createElement('div');
+                lightbox.classList.add('lightbox');
+                lightbox.innerHTML = `
+                    <div class="lightbox-close">&times;</div>
+                    <img src="${src}" alt="${alt}">
+                `;
+
+                document.body.appendChild(lightbox);
+                setTimeout(() => lightbox.classList.add('active'), 10);
+
+                const closeLightbox = () => {
+                    lightbox.classList.remove('active');
+                    setTimeout(() => lightbox.remove(), 300);
+                };
+
+                lightbox.addEventListener('click', closeLightbox);
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupLightbox);
+</script>

@@ -45,3 +45,73 @@ const { activeNav = "" } = Astro.props;
         </ul>
     </div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Loading Screen ---
+        const loading = document.getElementById('loading');
+        if (loading) {
+            const visited = sessionStorage.getItem('visited');
+            if (visited) {
+                loading.classList.add('loaded');
+            } else {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        loading.classList.add('loaded');
+                        sessionStorage.setItem('visited', 'true');
+                    }, 500); // Reduced delay from 1000ms
+                });
+            }
+        }
+
+        // --- Mobile Menu ---
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (hamburger.classList.contains('active') &&
+                    !hamburger.contains(e.target as Node) &&
+                    !navLinks.contains(e.target as Node)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // --- Scroll Direction Header Control ---
+        const header = document.querySelector('header');
+        let lastScrollY = window.scrollY;
+        const hideThreshold = 100;
+
+        if (header) {
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                const isMenuOpen = hamburger && hamburger.classList.contains('active');
+
+                if (!isMenuOpen) {
+                    if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) {
+                        header.classList.add('header-hidden');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
+                }
+                lastScrollY = currentScrollY;
+            }, { passive: true });
+        }
+    });
+</script>
