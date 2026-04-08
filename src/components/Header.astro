@@ -122,11 +122,14 @@ const { activeNav = "" } = Astro.props;
             if (visited) {
                 loading.classList.add("loaded");
             } else {
+                const startTime = Date.now();
                 window.addEventListener("load", () => {
+                    const elapsed = Date.now() - startTime;
+                    const delay = Math.max(0, 1000 - elapsed); // Ensure at least 1000ms
                     setTimeout(() => {
                         loading.classList.add("loaded");
                         sessionStorage.setItem("visited", "true");
-                    }, 500); // Reduced delay from 1000ms
+                    }, delay);
                 });
             }
         }
@@ -177,7 +180,8 @@ const { activeNav = "" } = Astro.props;
                         window.requestAnimationFrame(() => {
                             const currentScrollY = window.scrollY;
                             const isMenuOpen =
-                                hamburger && hamburger.classList.contains("active");
+                                hamburger &&
+                                hamburger.classList.contains("active");
 
                             if (!isMenuOpen) {
                                 if (
