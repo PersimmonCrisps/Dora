@@ -1,6 +1,9 @@
 ---
 import { getImage } from 'astro:assets';
 import defaultIcon from '../assets/images/icon.jpg';
+import inter400 from '../assets/fonts/inter-400.woff2';
+import inter700 from '../assets/fonts/inter-700.woff2';
+import outfit300 from '../assets/fonts/outfit-300.woff2';
 
 interface Props {
 	title: string;
@@ -49,5 +52,7 @@ const resolvedImage = image || defaultOgImage.src;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(resolvedImage, Astro.site)} />
 
-
-<!-- Fonts are now self-hosted in global.css -->
+<!-- Fonts are now self-hosted and preloaded for performance -->
+<link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href={outfit300} as="font" type="font/woff2" crossorigin="anonymous" />
