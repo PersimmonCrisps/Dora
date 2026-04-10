@@ -61,8 +61,6 @@ published: true
 
 ## 3. パフォーマンスとアセットの仕様
 
-PageSpeed Insights で高いスコアを維持するための重要な仕様です。修正時はこれらを遵守してください。
-
 ### アセットの最適化
 - **画像**: 公開アセットを除き、画像は `src/assets/images/` に配置してください。Astroの画像最適化パイプライン（`astro:assets`）により、自動的に最適なサイズ・形式・キャッシュ用ハッシュが付与されます。
 - **フォント**: 外部リクエストを避けるため、フォント（WOFF2形式）は `src/assets/fonts/` から自前配信しています。設定は `global.css` の `@font-face` および `BaseHead.astro` のプリロード（preload）設定で管理されています。
