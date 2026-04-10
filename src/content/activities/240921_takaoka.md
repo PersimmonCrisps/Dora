@@ -2,7 +2,8 @@
 date: 2024.09.21-22
 description: 藤子・F・不二雄先生の故郷、富山県高岡市を巡る合宿の記録。
 featured: false
-gallery: []
+gallery:
+- 240921_takaoka.jpeg
 image: "240921_takaoka.jpeg"
 rawDate: 2024.09.21
 title: 高岡合宿
