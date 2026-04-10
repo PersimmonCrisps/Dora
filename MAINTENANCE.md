@@ -50,22 +50,31 @@ published: true
 
 ---
 
-## 2. 開発者向けの構造
-
 ### 主要ディレクトリ
 - `src/layouts/Layout.astro`: 全ページの共通枠。
-- `src/components/`: ヘッダー、フッター、カードなどの部品。
+- `src/components/`: ヘッダー、フッター、カードなどの部品。JavaScriptロジックも各コンポーネント内の `<script>` で管理されています。
 - `src/pages/`: 各種ページ。個別記事は `[slug].astro` で自動生成されます。
-- `public/assets/`: 画像、CSS、および既存の動作を支える `main.js`。
-
-### 便利なコマンド
-- `npm run dev`: 開発用サーバーを起動（http://localhost:4321）
-- `npm run build`: 本番用ファイルの書き出し
-    - **自動圧縮**: ビルド時に `astro-compress` が走り、HTML/CSS/JS/SVGが自動的に最小化されます。
+- `src/styles/global.css`: サイト全体のメインスタイルシート。
+- `src/assets/`: 画像やフォント。ビルド時に自動的にハッシュ化・最適化されます。
 
 ---
 
-## 3. トラブルシューティング
+## 3. パフォーマンスとアセットの仕様
+
+PageSpeed Insights で高いスコアを維持するための重要な仕様です。修正時はこれらを遵守してください。
+
+### アセットの最適化
+- **画像**: 公開アセットを除き、画像は `src/assets/images/` に配置してください。Astroの画像最適化パイプライン（`astro:assets`）により、自動的に最適なサイズ・形式・キャッシュ用ハッシュが付与されます。
+- **フォント**: 外部リクエストを避けるため、フォント（WOFF2形式）は `src/assets/fonts/` から自前配信しています。設定は `global.css` の `@font-face` および `BaseHead.astro` のプリロード（preload）設定で管理されています。
+
+### アニメーションとJSロジック
+- **GPU高速化**: アニメーションは `transform` (scale, translate) や `opacity` のみを操作し、`box-shadow` や `width/height` の直接的なアニメーションは避けてください。
+- **ローディング制御**: ユーザー体験向上のため、初回訪問時は最低でも1秒間ローディング画面が表示されるよう `Header.astro` で制御されています。
+- **スクロール最適化**: スクロールイベントは `requestAnimationFrame` を使用し、レイアウト・スラッシング（強制リフロー）が発生しないよう最適化されています。
+
+---
+
+## 4. トラブルシューティング
 - **写真が表示されない**:
     - Markdown の `image` に記述したファイル名が、`src/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
 - **デザインが崩れた**:
