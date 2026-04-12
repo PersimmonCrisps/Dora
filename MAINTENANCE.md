@@ -26,8 +26,8 @@ image: "メイン画像ファイル名.jpg"
 description: "一覧ページに表示される短い説明文"
 featured: true
 gallery:
-  - "画像1.jpg"
-  - "画像2.jpg"
+- "画像1.jpg"
+- "画像2.jpg"
 published: true
 ---
 
@@ -73,6 +73,8 @@ published: true
 ---
 
 ## 4. トラブルシューティング
+- **とりあえず**
+    - 管理者に訊いてください。
 - **写真が表示されない**:
     - Markdown の `image` に記述したファイル名が、`src/assets/images/activities/` 内のファイル名と完全に一致しているか確認してください。
 - **デザインが崩れた**:
