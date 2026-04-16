@@ -1,8 +1,8 @@
 Dora.code-workspace
-.DS_Store
 .venv
 node_modules
 dist
 .astro
 .env
 .env*.local
+.DS_Store
