@@ -22,7 +22,7 @@ const cleanLink = link.replace('.html', '');
 const href = `/activities/${cleanLink}`;
 ---
 
-<a href={href} class="card activity-card" style="text-decoration: none; color: inherit; display: block;" data-date={rawDate}>
+<a href={href} class="card activity-card" style="text-decoration: none; color: inherit;" data-date={rawDate}>
     <Image 
         src={images[imagePath]()} 
         alt={`${title}のアイキャッチ画像`} 

@@ -253,6 +253,10 @@ header.header-hidden {
     border-radius: 50%;
 }
 
+.hero-short::after {
+    display: none;
+}
+
 .hero-content h1 {
     font-size: 4rem;
     margin-bottom: 1.5rem;
@@ -429,6 +433,7 @@ footer {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .activity-image {
@@ -440,6 +445,9 @@ footer {
 
 .activity-content {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .activity-date {
@@ -451,7 +459,8 @@ footer {
 }
 
 .read-more {
-    margin-top: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
     color: var(--primary);
     font-weight: 700;
     font-size: 0.95rem;

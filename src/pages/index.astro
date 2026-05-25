@@ -2,19 +2,20 @@
 import Layout from "../layouts/Layout.astro";
 import ActivityCard from "../components/ActivityCard.astro";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 const title =
     "東京大学ドラえもんF同好会 | ドラえもん、F作品好きが集まるサークル";
 const description =
     "東京大学ドラえもんF同好会の公式サイトです。ドラえもんや藤子・F・不二雄作品を愛する学生が集まり、映画鑑賞、ミュージアム訪問、学園祭出展などの活動を行っています。誰でも大歓迎！";
 
-const activities = await getCollection("activities", ({ data }) => {
+const activities = await getCollection("activities", ({ data }: CollectionEntry<"activities">) => {
     return data.published !== false;
 });
-const featuredActivities = activities
-    .filter((a) => a.data.featured)
+const featuredActivities: CollectionEntry<"activities">[] = activities
+    .filter((a: CollectionEntry<"activities">) => a.data.featured)
     .sort(
-        (a, b) =>
+        (a: CollectionEntry<"activities">, b: CollectionEntry<"activities">) =>
             new Date(b.data.rawDate).getTime() -
             new Date(a.data.rawDate).getTime(),
     );
@@ -62,41 +63,6 @@ const featuredActivities = activities
             </div>
         </section>
 
-        <section id="welcome">
-            <div class="container">
-                <h2 class="section-title">新歓日程</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dora"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">4/11</div>
-                            <h3>映画鑑賞会</h3>
-                            <p>みんなで最新のドラえもん映画を鑑賞します。</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dora"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">4/18</div>
-                            <h3>西武線スタンプラリー開催</h3>
-                            <p>
-                                西武線沿線を巡るスタンプラリーを楽しみましょう。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dora"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">4/25</div>
-                            <h3>ドラえもんミュージアム訪問</h3>
-                            <p>
-                                藤子・F・不二雄ミュージアムへみんなで遊びに行きます。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="activities">
             <div class="container">
